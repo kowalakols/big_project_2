@@ -32,7 +32,7 @@ router.get('/auth/sign-in', (req, res) => {
 
 // ? Create a user
 // POST /auth/sign-up
-router.post('/auth/sign-up', isSignedOut, parser.single('profileImage'), async (req, res) => {
+router.post('/auth/sign-up', parser.single('profileImage'), async (req, res) => {
   try {
     req.body.profileImage = req.file.path
 

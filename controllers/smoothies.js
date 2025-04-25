@@ -71,7 +71,7 @@ router.get('/smoothies/:smoothieId', async (req, res, next) => {
     res.status(500).send('Something went wrong');
   }
 })
-router.post('/smoothies', isSignedIn, async (req, res) => {
+router.post('/smoothies', async (req, res) => {
   try{
     req.body.author = req.session.user._id
     const { name, price, description, ingredients } = req.body;

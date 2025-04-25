@@ -30,7 +30,7 @@ app.use(session({
       mongoUrl: process.env.MONGODB_URI
     })
 }))
-app.use('/auth', router)
+app.use('/', router)
 app.use(passUserToView)
 
 
