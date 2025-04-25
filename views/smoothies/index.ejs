@@ -15,6 +15,7 @@
           <% Smoothies.forEach(smoothie => { %>
             <article>
               <a href="/smoothies/<%= smoothie._id %>">
+                <img src="https://picsum.photos/seed/<%= smoothie._id %>/200/200" alt="Random image for smoothie thumbnail"/>
                 <h2><%= smoothie.name %></h2>
                 <p><%= smoothie.description %>...</p>
                 <% smoothie.ingredients.forEach(ingredient => { %>

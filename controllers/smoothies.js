@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
-import express from 'express'
-import Smoothie from '../models/Smoothies.js'
+// routes/smoothieRoutes.js
+import mongoose from 'mongoose';
+import express from 'express';
+import Smoothie from '../models/Smoothies.js';
+import isSignedIn from '../middleware/isSignedIn.js';
 
 const router = express.Router()
 
@@ -17,7 +19,7 @@ router.get('/smoothies', async (req, res) => {
     }
 })
 
-router.get('/smoothies/new', (req, res) => {
+router.get('/smoothies/new', isSignedIn, (req, res) => {
     try {
       console.log('Smooth')
       return res.render('smoothies/new.ejs')
@@ -27,7 +29,7 @@ router.get('/smoothies/new', (req, res) => {
     }
 })
 
-router.get('/smoothies/:smoothieId/edit', async (req, res, next) => {
+router.get('/smoothies/:smoothieId/edit', isSignedIn, async (req, res, next) => {
     try {
       if (!mongoose.isValidObjectId(req.params.smoothieId)){
         console.log("good here")
@@ -49,28 +51,29 @@ router.get('/smoothies/:smoothieId/edit', async (req, res, next) => {
 
 router.get('/smoothies/:smoothieId', async (req, res, next) => {
   try {
-    if (!mongoose.isValidObjectId(req.params.smoothieId)){
-      return next()
+    // Check if the smoothieId is valid
+    if (!mongoose.isValidObjectId(req.params.smoothieId)) {
+      return next();  // This will call the next middleware (likely for a 404 handler)
     }
 
+    // Find the smoothie by ID and populate the 'author' field
+    const smoothie = await Smoothie.findById(req.params.smoothieId).populate('author');
 
-    const smoothie = await Smoothie.findById(req.params.smoothieId)
+    // If smoothie is not found, go to the next middleware (likely for a 404 handler)
+    if (!smoothie) return next();
 
+    const user = req.session.user;
 
-    if (!smoothie) return next()
+    res.render('smoothies/show', { smoothie, user });
 
-      console.log(smoothie)
-
-    return res.render('smoothies/show.ejs', {
-      smoothie: smoothie
-    })
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).send('Something went wrong');
   }
 })
-
-router.post('/smoothies', async (req, res) => {
+router.post('/smoothies', isSignedIn, async (req, res) => {
   try{
+    req.body.author = req.session.user._id
     const { name, price, description, ingredients } = req.body;
 
     const ingredientsArray = ingredients
@@ -96,6 +99,29 @@ router.post('/smoothies', async (req, res) => {
 
 router.put('/smoothies/:smoothieId', async (req, res) => {
   try {
+    const smoothieId = req.params.smoothieId
+
+    // Validate incoming smoothieId
+    if (!mongoose.isValidObjectId(smoothieId)){
+      return next()
+    }
+
+    
+    const smoothie = await Smoothie.findById(smoothieId)
+
+    const loggedInUserId = req.session.user._id
+    const smoothieAuthor = smoothie.author
+
+    if (!smoothieAuthor.equals(loggedInUserId)){
+      return res.status(403).send('You do not permission to access this resource')
+    }
+
+    // Attempt to make the update for the smoothie
+    const updatedSmoothie = await Smoothie.findByIdAndUpdate(smoothieId, req.body)
+
+    // If smoothies not found, return 404
+    if (!updatedSmoothie) return next()
+
     const { name, price, description, ingredients } = req.body;
 
     // Convert comma-separated ingredients string to array
@@ -114,6 +140,19 @@ router.put('/smoothies/:smoothieId', async (req, res) => {
     res.send('Something went wrong');
   }
 });
+
+router.delete('/smoothies/:smoothiesId', isSignedIn, async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.smoothiesId)){
+      return next()
+    }
+    await Smoothie.findByIdAndDelete(req.params.smoothiesId)
+    return res.redirect('/smoothies')
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 
 
 export default router

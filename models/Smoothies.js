@@ -4,7 +4,11 @@ const smoothieSchema = new mongoose.Schema({
     name: String,
     price: Number,
     description: String,
-    ingredients: [String]
+    ingredients: [String],
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 },
 {
     timestamps: true

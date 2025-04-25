@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | General Eye</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+  
+  <main>
+    <h1 class="text-center">Create an account</h1>
+    <form class="form" action="/auth/sign-up" method="POST" enctype="multipart/form-data">
+
+      <!-- Email Address -->
+      <div class="input-control">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email Address" required>
+      </div>
+
+      <!-- Username -->
+      <div class="input-control">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username" required>
+      </div>
+
+      <!-- Password -->
+      <div class="input-control">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+
+      <!-- Password Confirmation -->
+      <div class="input-control">
+        <label for="passwordConfirmation">Confirm password</label>
+        <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirm password" required>
+      </div>
+
+      <!-- Profile Image -->
+      <div class="input-control">
+        <label for="profileImage">Profile Image</label>
+        <input type="file" name="profileImage" id="profileImage" accept="image/*">
+      </div>
+
+      <!-- Error message -->
+      <% if (errorMessage) { %>
+        <p class="error-message"><%= errorMessage %></p>
+      <% } %>
+
+      <!-- Submit -->
+      <button type="submit">Sign up</button>
+
+      <p class="text-center">Already have an account? <a href="/auth/sign-in">Sign in</a></p>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | General Eye</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+  
+  <main>
+    <h1 class="text-center">Sign in</h1>
+    <form class="form" action="/auth/sign-in" method="POST">
+
+      <!-- Email Address -->
+      <div class="input-control">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email Address" required>
+      </div>
+
+      <!-- Password -->
+      <div class="input-control">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+
+      <!-- Error message -->
+      <% if (errorMessage) { %>
+        <p class="error-message"><%= errorMessage %></p>
+      <% } %>
+
+      <!-- Submit -->
+      <button type="submit">Sign in</button>
+      
+      <p class="text-center">Haven't got an account? <a href="/auth/sign-up">Sign up</a></p>
+    </form>
+  </main>
+</body>
+</html>

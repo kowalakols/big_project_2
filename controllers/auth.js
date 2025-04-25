@@ -8,7 +8,7 @@ const router = express.Router()
 
 // ! Routes
 // Sign up form page
-router.get('/auth/sign-up', isSignedOut, (req, res) => {
+router.get('/auth/sign-up', (req, res) => {
   try {
     return res.render('auth/sign-up.ejs', {
       errorMessage: ''
@@ -19,7 +19,7 @@ router.get('/auth/sign-up', isSignedOut, (req, res) => {
 })
 
 // Sign in form page
-router.get('/auth/sign-in', isSignedOut, (req, res) => {
+router.get('/auth/sign-in', (req, res) => {
   try {
     return res.render('auth/sign-in.ejs', {
       errorMessage: ''

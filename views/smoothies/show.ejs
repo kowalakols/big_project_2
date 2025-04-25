@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>selected smoothie</title>
+    <title><%= smoothie.name %></title>
     <link rel="stylesheet" href="/stylesheet/main.css">
 </head>
 <body>
@@ -11,6 +11,16 @@
         <%- include('../partial/nav.ejs') %>
     </section>
     <section>
+      <% if (user && smoothie.author.equals(user._id)) { %>
+          <div class="controls">
+            <a class="edit-btn" href="/smoothies/<%= smoothie._id %>/edit">✍️</a>
+            <form action="/smoothies/<%= smoothie._id %>?_method=DELETE" method="POST">
+              <button class="delete-btn" type="submit">🗑️</button>
+            </form>
+          </div>
+        <% } else { %>
+          <p>You do not have permission to edit or delete this smoothie.</p>
+        <% } %>
         <div class="smoothie">
             <h1><%= smoothie.name %></h1>
             <h1>$<%= smoothie.price %></h1>

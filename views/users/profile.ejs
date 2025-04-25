@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= user.username %>'s profile | General Eye</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+  
+  <main class="profile">
+    <img src="<%= user.profileImage %>" alt="<%= user.username %>'s profile image">
+    <h1 class="text-center"><%= user.username %></h1>
+
+    <!-- Authored smoothies -->
+    <section>
+      <h2>Authored smoothiess</h2>
+      <ul>
+        <% authoredSmoothies.forEach(smoothie => { %>
+          <li>
+            <a href="/smoothies/<%= smoothie._id %>">
+              <%= smoothie.title %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <!-- Liked smoothies -->
+    <section>
+      <h2>Liked smoothies</h2>
+      <ul>
+        <% likedSmoothies.forEach(smoothie => { %>
+          <li>
+            <a href="/smoothies/<%= smoothie._id %>">
+              <%= smoothie.name %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+
+</body>
+</html>

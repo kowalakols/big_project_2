@@ -6,8 +6,14 @@ import methodOverride from "method-override"
 import session from "express-session"
 import MongoStore from "connect-mongo"
 
+
 import Smoothie from './models/Smoothies.js';
 import SmoothiesRouter from './controllers/smoothies.js'
+
+import User from "./models/User.js"
+import router from "./controllers/auth.js"
+
+import passUserToView from "./middleware/passUserToView.js"
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -16,14 +22,17 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded())
 app.use(morgan('dev'))
 app.use(express.static('public'))
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//     store: MongoStore.create({
-//       mongoUrl: process.env.MONGODB_URI
-//     })
-// }))
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI
+    })
+}))
+app.use('/auth', router)
+app.use(passUserToView)
+
 
 app.get('/', async (req, res) => {
     try {
