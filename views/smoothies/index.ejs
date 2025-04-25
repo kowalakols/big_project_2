@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section>
+          <%- include('../partial/nav.ejs') %>
+        </section>
+        <h1>All smoothies</h1>
+        <section class="smoothies">
+          <% Smoothies.forEach(smoothie => { %>
+            <article>
+              <a href="/smoothies/<%= smoothie._id %>">
+                <h2><%= smoothie.name %></h2>
+                <p><%= smoothie.description %>...</p>
+                <% smoothie.ingredients.forEach(ingredient => { %>
+                    <ul>
+                        <li><%= ingredient %></li>
+                    </ul>
+                <% }) %>
+                <p><%= new Date(smoothie.createdAt).toString() %></p>
+              </a>
+            </article>
+          <% }) %>
+        </section>
+      </main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selected smoothie</title>
+    <link rel="stylesheet" href="/stylesheet/main.css">
+</head>
+<body>
+    <section>
+        <%- include('../partial/nav.ejs') %>
+    </section>
+    <section>
+        <div class="smoothie">
+            <h1><%= smoothie.name %></h1>
+            <h1>$<%= smoothie.price %></h1>
+            <p><%= smoothie.description %></p>
+            <ul class="ingredients">
+              <% smoothie.ingredients.forEach(ingredient => { %>
+                <li><%= ingredient %></li>
+              <% }); %>
+            </ul>
+    </section>
+
+</body>
+</html>

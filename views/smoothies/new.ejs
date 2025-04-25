@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create smoothie</title>
+    <link rel="stylesheet" href="/stylesheet/main.css">
+</head>
+<body>
+    <div class="form_header">
+        <h1> create a new smoothie</h1>
+    </div>
+    <div class="form">
+        <form action = "/smoothies" method = "post">
+            <div class = "input-control">
+                <label for = "name">name</label>
+                <input type = "text" name="name" id="name">
+            </div>
+            <div class = "input-control">
+                <label for = "price">price</label>
+                <input type = "number" name="price" id="price">
+            </div>
+            <div class="input-control">
+                <label for="description">description</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+            <div class="input-control">
+                <label for="ingredients">ingridients(comma seprated)</label>
+                <textarea name="ingredients" id="ingredients" rows="4" cols="50"></textarea>
+            </div>
+            <!-- Submit -->
+            <button type="submit">Submit</button>   
+        </form>
+    </div>
+</body>
+</html>

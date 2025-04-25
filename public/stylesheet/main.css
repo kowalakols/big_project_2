@@ -1,0 +1,102 @@
+
+
+
+/* main page */
+.background {
+    width: 100%;
+    height: 1000px;
+}
+.background img {
+    width: 100%;
+    height: 100%;
+} */
+
+
+
+/* nav bar */
+.nav_bar {
+    background-color: grey;
+    height: 150px;
+}
+.nav_bar_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    display: flex;
+    justify-content: flex-start;
+}
+.logo img {
+    height: 150px;
+    width: 250px;
+    border-radius: 20%;
+}
+.directions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 500px;
+    text-wrap: nowrap;
+}
+
+.directions a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.directions a:hover{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.options {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.authentication {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 50px;
+}
+
+/* new smoothie */
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+.form_header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.form_header {
+    font-size: x-large;
+}
+.input-control {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-content: center;
+    gap: 2px;
+    margin: 20px;
+    border: #333 solid 1px;
+}
+.input-control label{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    font-size: medium;

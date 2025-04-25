@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit smoothie</title>
+    <link rel="stylesheet" href="/stylesheet/main.css">
+</head>
+<body>
+    <%- include('../partial/nav.ejs') %>
+    <main>
+        <h1> Edit smoothie</h1>
+        <form action = "/smoothies/<%= smoothie._id %>?_method=PUT"  method = "POST">
+            <div class = "input-control">
+                <label for = "name">name</label>
+                <input type = "text" name="name" id="name" placeholder="name" value="<%= smoothie.name %>">
+            </div>
+            <div class = "input-control">
+                <label for = "price">price</label>
+                <input type = "number" name="price" id="price" placeholder="price" value="<%= smoothie.price %>">
+            </div>
+            <div class="input-control">
+                <label for="description">description</label>
+                <textarea name="description" id="description" placeholder="description"><%= smoothie.description %></textarea>
+            </div>
+            <div class="input-control">
+                <label for="ingredients">ingridients(comma seprated)</label>
+                <textarea name="ingredients" id="ingredients"placeholder="ingredients"><%= smoothie.ingredients %></textarea>
+            </div>
+            <!-- Submit -->
+            <button type="submit">Submit</button>   
+        </form>
+        <div class="cancel text-center">
+            <a href="/articles/<%= article._id %>">Cancel</a>
+        </div>
+    </main>
+</body>
+</html>
