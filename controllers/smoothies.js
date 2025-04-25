@@ -64,17 +64,17 @@ router.get('/smoothies/:smoothieId', async (req, res, next) => {
 
     const user = req.session.user;
 
-    res.render('smoothies/show', { smoothie, user });
+    res.render('smoothies/show.ejs', { smoothie, user });
 
   } catch (error) {
     console.log(error);
     res.status(500).send('Something went wrong');
   }
 })
-router.post('/smoothies', async (req, res) => {
+router.post('/smoothies', isSignedIn, async (req, res) => {
   try{
     req.body.author = req.session.user._id
-    const { name, price, description, ingredients } = req.body;
+    const { name, price, description, ingredients, author } = req.body;
 
     const ingredientsArray = ingredients
       .split(',')                // split by commas
@@ -85,7 +85,8 @@ router.post('/smoothies', async (req, res) => {
         name,
         price,
         description,
-        ingredients: ingredientsArray
+        ingredients: ingredientsArray,
+        author: req.body.author
       });
       return res.redirect(`/smoothies/${newSmoothie._id}`);
   }
@@ -97,7 +98,7 @@ router.post('/smoothies', async (req, res) => {
   }
 })
 
-router.put('/smoothies/:smoothieId', async (req, res) => {
+router.put('/smoothies/:smoothieId', isSignedIn, async (req, res) => {
   try {
     const smoothieId = req.params.smoothieId
 

@@ -18,12 +18,17 @@
                         <a href="smoothies"><h2>menu</h2></a>
                         <a><h2>locations</h2></a>
                         <a><h2>about us</h2></a>
-                        <a href="smoothies/new"><h2>create a smoothies</h2></a>
-                    </div>
-                    
-                    <div class="authentication">
-                        <a href="/auth/sign-in"><h2>sign in</h2></a>
-                        <a href="/auth/sign-up"><h2>sign up</h2></a>
+                        <% if (typeof user !== 'undifined' && user) {%>
+                            <a href="/smoothies/new"><h2>create a smoothies</h2></a>
+                            <form action="/auth/sign-out" method="get" style="display: inline;">
+                                <button type="submit">Sign Out</button>
+                            </form>
+                        <% } else { %>
+                            <div class="authentication">
+                                <a href="/auth/sign-in"><h2>sign in</h2></a>
+                                <a href="/auth/sign-up"><h2>sign up</h2></a>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

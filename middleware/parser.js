@@ -14,7 +14,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'general_eye_uploads',
+    folder: 'ksmoothies_uploads',
     format: 'png',
     public_id: (req, file) => {
       // Create unique name for the file to be uploaded with

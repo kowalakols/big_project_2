@@ -10,7 +10,7 @@
     <%- include('../partial/nav.ejs') %>
     <main>
         <h1 class="text-center"> Edit smoothie</h1>
-        <form action = "/smoothies/<%= smoothie._id %>?_method=PUT"  method = "POST">
+        <form class="auth-form" action = "/smoothies/<%= smoothie._id %>?_method=PUT"  method = "POST">
             <div class = "input-control">
                 <label for = "name">name</label>
                 <input type = "text" name="name" id="name" placeholder="name" value="<%= smoothie.name %>">

@@ -11,7 +11,6 @@ import Smoothie from './models/Smoothies.js';
 import SmoothiesRouter from './controllers/smoothies.js'
 
 import User from "./models/User.js"
-import router from "./controllers/auth.js"
 
 import passUserToView from "./middleware/passUserToView.js"
 
@@ -30,9 +29,10 @@ app.use(session({
       mongoUrl: process.env.MONGODB_URI
     })
 }))
-app.use('/', router)
 app.use(passUserToView)
 
+import router from "./controllers/auth.js"
+app.use('/', router)
 
 app.get('/', async (req, res) => {
     try {
