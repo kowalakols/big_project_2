@@ -24,6 +24,10 @@ body{
     border: white;
 }
 
+.smoothie-img{
+    height: 100%;
+}
+
 
 /* nav bar */
 .nav_bar {
@@ -71,6 +75,14 @@ body{
     cursor: pointer;
 }
 
+.middle-directions{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    gap: 25px;
+}
+
 .options {
     color: white;
     display: flex;
@@ -87,6 +99,10 @@ body{
     align-items: center;
     justify-content: flex-end;
     gap: 50px;
+}
+
+.sign-out {
+    color: black;
 }
 
 /* new smoothie */
@@ -152,4 +168,52 @@ body{
 .auth-form .input-control{
     flex-direction: column;
     align-items: flex-start;
+}
+/* index */
+.single-smoothie {
+    display: flex;
+    background: #5e50fb;
+    border: 1px solid;
+    color: white;
+    width: 100%
+}
+  
+.details {
+    padding: 1rem;
+    width: 100%;
+}
+  
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.controls{
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    font-size: xx-large;
+}
+.edit-btn {
+    border: white solid 2px;
+}
+.delete-btn {
+    border: white solid 2px;
+    cursor: pointer;
+    background-color: #5e50fb;
+}
+.delete-btn button {
+    background-color: #5e50fb;
+    color: white;
+    font-size: 20px;
+}
+
+.delete-btn :hover {
+    background-color: white;
+    color: #5e50fb;
+}
+.edit-btn a :hover {
+    background-color: #5e50fb;
+    color: white;
 }

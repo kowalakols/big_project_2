@@ -15,15 +15,24 @@
           <% Smoothies.forEach(smoothie => { %>
             <article>
               <a href="/smoothies/<%= smoothie._id %>">
-                <img src="https://picsum.photos/seed/<%= smoothie._id %>/200/200" alt="Random image for smoothie thumbnail"/>
-                <h2><%= smoothie.name %></h2>
-                <p><%= smoothie.description %>...</p>
-                <% smoothie.ingredients.forEach(ingredient => { %>
-                    <ul>
-                        <li><%= ingredient %></li>
-                    </ul>
-                <% }) %>
-                <p><%= new Date(smoothie.createdAt).toString() %></p>
+                <div class="single-smoothie">
+                  <div class = "smoothie-img">
+                    <img src="https://picsum.photos/seed/<%= smoothie._id %>/200/200" alt="Random image for smoothie thumbnail" width="200px"/>
+                  </div>
+                  <div class="details">
+                    <div class="top-bar">
+                      <h2><%= smoothie.name %></h2>
+                      <h2>$<%= smoothie.price %></h2>
+                    </div>
+                    <p><%= smoothie.description %>...</p>
+                    <% smoothie.ingredients.forEach(ingredient => { %>
+                        <ul>
+                          <li><%= ingredient %></li>
+                        </ul>
+                    <% }) %>
+                    <p><%= new Date(smoothie.createdAt).toString() %></p>
+                  </div>
+                </div>
               </a>
             </article>
           <% }) %>
